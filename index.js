@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 3000 });
+const port = process.env.PORT || 3000;
+const wss = new WebSocket.Server({ port });
 
 wss.on('connection', ws => {
   ws.on('message', message => {
@@ -12,3 +13,5 @@ wss.on('connection', ws => {
   });
   ws.send('Connected to chess server!');
 });
+
+console.log(`WebSocket server running on port ${port}`);
